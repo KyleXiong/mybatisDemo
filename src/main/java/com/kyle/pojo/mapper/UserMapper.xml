@@ -3,7 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kyle.pojo.mapper.UserMapper">
-  <select id="getUser" resultType="com.kyle.pojo.User">
-    select * from users where id = #{id}
-  </select>
+	<select id="getUser" resultType="com.kyle.pojo.User">
+		select * from users where id =
+		#{id}
+	</select>
+
+	<insert id="insertUser" parameterType="com.kyle.pojo.User"
+		flushCache="true" statementType="PREPARED" keyProperty="id" keyColumn=""
+		useGeneratedKeys="true" timeout="20" >
+		insert into users (name,age) values (#{name},#{age})
+	</insert>
+	
+	<update id="updateUser" parameterType="com.kyle.pojo.User"
+		flushCache="true" statementType="PREPARED" timeout="20">
+		update users set age= #{age} where id = #{id}
+	</update>
+
+	<delete id="deleteUser" parameterType="com.kyle.pojo.User"
+		flushCache="true" statementType="PREPARED" timeout="20" >
+		delete from users where id = #{id}
+	</delete>
+		
 </mapper>
