@@ -7,6 +7,10 @@
 		select * from users where id =
 		#{id}
 	</select>
+	
+	<select id="getUsers" resultType="com.kyle.pojo.User" >
+		select * from users
+	</select>
 
 	<insert id="insertUser" parameterType="com.kyle.pojo.User"
 		flushCache="true" statementType="PREPARED" keyProperty="id" keyColumn=""

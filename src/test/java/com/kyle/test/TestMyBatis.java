@@ -2,6 +2,7 @@ package com.kyle.test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -9,6 +10,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.kyle.pojo.User;
@@ -31,6 +33,7 @@ public class TestMyBatis extends TestCase {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void testSelect() {
 		SqlSession session = null;
@@ -50,6 +53,32 @@ public class TestMyBatis extends TestCase {
 		}
 	}
 	
+	@Test
+	public void testSelectUsers() {
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			List<User> users = mapper.getUsers();
+			if(null != users)
+			{
+				for(User u : users)
+				{
+					System.out.println(u);
+				}
+			}
+		} 
+		finally
+		{
+			if(null != session)
+			{
+				session.close();
+			}
+		}
+	}
+	
+	@Ignore
     @Test
 	public void testInsert() {
 		SqlSession session = null;
@@ -73,6 +102,7 @@ public class TestMyBatis extends TestCase {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void testUpdate() {
 		SqlSession session = null;
@@ -96,6 +126,7 @@ public class TestMyBatis extends TestCase {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void testDelete() {
 		SqlSession session = null;
